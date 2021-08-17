@@ -1,0 +1,71 @@
+version: '3'
+services:
+  webserver:
+    image: 
+      nginx:alpine
+    restart: 
+      always
+    tty: 
+      true
+    ports:
+      - "$WEBSERVER_PORT:80"
+    networks:
+      - net
+    volumes:
+      - ../../frontend/:/usr/share/nginx/html
+
+  pg_db:
+    image: 
+      postgres:13.1
+    restart: 
+      always
+    environment:
+      POSTGRES_PASSWORD: $DB_PASS
+      POSTGRES_USER: $DB_USER
+      POSTGRES_DB: $DB_NAME
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - "$DB_PORT:5432"
+    networks:
+      net:
+
+  pgmyadmin:
+    image: 
+      dpage/pgadmin4 
+    ports:
+      - "$PGADMIN_PORT:80"
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: $PGADMIN_PASSWORD
+      PGADMIN_DEFAULT_EMAIL: $PGADMIN_EMAIL
+    networks:
+      net:
+
+  flask:
+    build: 
+      context: ../..
+      dockerfile: ./docker/duels-web-instances/dockerfiles/flask.Dockerfile
+    volumes: 
+      - ../../flask/:/usr/src/app/
+    ports: 
+      - "$FLASK_PORT:5000"
+    environment: 
+      FLASK_DEBUG: 1
+      FLASK_ENV: docker
+      POSTGRES_PASSWORD: $DB_PASS
+      POSTGRES_USER: $DB_USER
+      POSTGRES_DB: $DB_NAME
+    networks:
+      net:
+
+volumes:
+  db:
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        -
+          subnet: $NETWORK

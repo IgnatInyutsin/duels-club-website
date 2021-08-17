@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+	   <meta charset="utf-8">
+       <meta http-equiv="Cache-Control" content="no-cache">
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+       <meta name="yandex-verification" content="ed4b1ac59362c3a8" />
+        <!-- Подключение css -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="js/libs/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+        <link href="css/desktop.css" rel="stylesheet">
+        <link href="css/mobile.css" rel="stylesheet">
+        <!-- Подключение jquery -->
+        <script src="js/libs/jquery/jquery.min.js"></script>
+        <script src="js/libs/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Подключение angular -->
+        <script src="js/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="js/libs/angularjs/1.6.9/angular-route.js"></script>
+        <script src="js/libs/angularjs/1.6.9/angular-cookies.js"></script>
+        <script src="js/libs/angularjs/1.6.9/angular-sanitize.min.js"></script>
+        <!-- Подключение файла для подмены основной части контента -->
+        <script src="js/routes.js"></script>
+        <!-- Подключение файлов-контроллеров для основной части -->
+        <script src="js/controllers/faq.js?n=1"></script>
+        <script src="js/controllers/get_result.js?n=1"></script>
+        <script src="js/controllers/index.js?n=1"></script>
+        <script src="js/controllers/matches.js?n=1"></script>
+        <script src="js/controllers/members.js?n=1"></script>
+        <script src="js/controllers/profile.js?n=1"></script>
+        <script src="js/controllers/rating.js?n=1"></script>
+        <script src="js/controllers/common.js?n=1"></script>
+        <script src="js/controllers/teams.js?n=1"></script>
+        <script src="js/controllers/header.js?n=1"></script>
+    </head>
+
+    <body ng-app="main" ng-controller="common" ng-class="{'loaded':isLoaded}">
+
+        <div class="blocked" style="display:none;"></div>
+        <!-- Основная часть -->
+        <div class="wrap">
+            <!-- Шапка страницы -->
+            <header ng-include="'views/includes/header.html'" ng-controller="header"></header>
+            <!-- Основной блок страницы -->
+            <div class="main">
+                <div ng-view class="main-content"></div>
+            </div>
+            <!-- Подвал страницы -->
+            <div ng-include="'views/includes/footer.html'"></div>
+        </div>
+    </body>
+</html>

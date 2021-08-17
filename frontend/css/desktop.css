@@ -1,0 +1,22 @@
+/*Тело*/
+body {background-color: #212121;}
+.main-content {max-width: 1140px; padding-top: 120px; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px;}
+/*Шапка*/
+.header {position: fixed; width: 100%; top: 0; left: 0; z-index: 50;}
+.header:before {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #252525; z-index: 3; -webkit-box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); -moz-box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51);}
+.header__body {position: relative; display: flex; justify-content: space-between; height: 80px; align-items: center;}
+.container {max-width: 1180px; margin: 0 auto; padding: 0 10px;}
+.header__list {display: flex; position: relative; z-index: 3;}
+.header__list li {list-style: none; margin-left: 20px;}
+.header__link {color: #fff; font-size: 18px; text-transform: uppercase; text-decoration: none;}
+.header__logo {position: relative; flex: 0 0 60px; z-index: 5;}
+.header__logo img {max-width: 100%; border-radius: 50%; display: block;}
+.header__burger {display: none; z-index: 5;}
+/*Контент*/
+.content__block {display: flex; flex-direction: column; justify-content: center; background-color: #272727; -webkit-box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); -moz-box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); margin-bottom: 60px}
+.content__block__img {width: 100%;}
+.content__block__title {font-size: 24px; color: #fff; text-align: center; margin-bottom: 30px; margin-left: 20px; margin-right: 20px;}
+.content__block__text {font-size: 18px; color: #fff; margin-left: 20px; margin-bottom: 20px; margin-right: 20px;}
+.content__block__text__paragraph {padding-bottom: 20px;}
+/*FAQ*/
+.faq__content {display: flex; position: relative; width: 100%; height: 100%; flex-direction: column; justify-content: center;}
