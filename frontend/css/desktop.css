@@ -14,9 +14,17 @@ body {background-color: #212121;}
 .header__burger {display: none; z-index: 5;}
 /*Контент*/
 .content__block {display: flex; flex-direction: column; justify-content: center; background-color: #272727; -webkit-box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); -moz-box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); box-shadow: 0px 0px 79px 3px rgba(0, 0, 0, 0.51); margin-bottom: 60px}
-.content__block__img {width: 100%;}
+.content__block__img {width: 100%; margin-bottom: 30px;}
+.content__block__img img {width: 100%;}
 .content__block__title {font-size: 24px; color: #fff; text-align: center; margin-bottom: 30px; margin-left: 20px; margin-right: 20px;}
 .content__block__text {font-size: 18px; color: #fff; margin-left: 20px; margin-bottom: 20px; margin-right: 20px;}
 .content__block__text__paragraph {padding-bottom: 20px;}
+/*Таблицы*/
+.table-wrap{overflow-x:auto;}
+table.table {width: 100%; color: #fff;}
+table.table th, table.table td {text-align: center; padding: 8px;}
+table.table-1 th {font-weight: bold;}
 /*FAQ*/
 .faq__content {display: flex; position: relative; width: 100%; height: 100%; flex-direction: column; justify-content: center;}
+/*Рейтинг*/
+.rating {display: flex; position: relative; width: 100%; height: 100%; flex-direction: column; justify-content: center;}

@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify, request, Response
-import migrations
+import migrations, getData
 import json
 
 app = Flask(__name__)
@@ -24,9 +24,9 @@ def addSession():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
-@app.route('/get_data')
-def getData():
-    resp = Response("None")
+@app.route('/get_data', methods=['GET'])
+def get_data():
+    resp = Response(json.dumps(getData.main(request.args['sql']), sort_keys=True, indent=2, ensure_ascii=False, default=str))
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 

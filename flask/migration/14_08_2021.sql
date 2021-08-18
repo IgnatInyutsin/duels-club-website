@@ -28,6 +28,7 @@ commentary TEXT);
 
 CREATE TABLE IF NOT EXISTS team
 (teamID SERIAL NOT NULL PRIMARY KEY,
+name VARCHAR(120),
 top SMALLINT NOT NULL,
 logo TEXT,
 description TEXT,
