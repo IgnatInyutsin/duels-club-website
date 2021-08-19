@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify, request, Response
-import migrations, getData
+import migrations, getData, addData
 import json
 
 app = Flask(__name__)
@@ -17,7 +17,7 @@ def migration():
 
 @app.route('/add_data')
 def addResult():
-    resp = Response("None")
+    resp = Response(json.dumps(addData.main(request.args['sql']), sort_keys=True, indent=2, ensure_ascii=False, default=str))
     #Ставим заголовки
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp

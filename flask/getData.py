@@ -2,13 +2,14 @@ import os
 from flask import Flask, jsonify, request
 import app
 import database
+import time
 
 def main(data):
 	# Подключаемся к БД
 	db = database.init()
 	#устанавливаем курсор
 	cursor = db.cursor()
-	# Делаем запрос если в data значение рейтинг
+	# Делаем запрос если в data значение из ветвлений
 	if data=="rating":
 		#Собираем всех в рейтинге
 		cursor.execute('''
@@ -21,3 +22,49 @@ def main(data):
 		records=cursor.fetchall()
 
 		return records
+
+	elif data=="newers":
+		cursor.execute('''
+			SELECT member.nickname
+			FROM member 
+			ORDER BY id DESC
+			LIMIT 3;''')
+		records=cursor.fetchall()
+
+		return records
+
+	elif data=="top3":
+		cursor.execute('''
+			SELECT member.nickname
+			FROM member
+			ORDER BY drp DESC
+			LIMIT 3;''')
+		records=cursor.fetchall()
+
+		return records
+
+	elif data[:5]=="login":
+		cursor.execute('''
+			SELECT member.passcache, member.id
+			FROM member
+			WHERE member.nickname = '{}';'''.format(data[5:]))
+		records=cursor.fetchall()
+
+		return records
+
+	elif data[:7]=="session":
+		#берем данные о просрочке
+		cursor.execute('''
+			SELECT session.ended, session.userid
+			FROM session
+			WHERE sessionid = '{}';'''.format(data[7:]))
+		records=cursor.fetchall()
+		#если просрочилось удаляем и сообщаем что просрочено
+		if records[0][0] <= time.time():
+			cursor.execute('''
+				DELETE FROM session 
+				WHERE sessionid = '{}' '''.format(data[7:]))
+			db.commit()
+			return {"status": "ended"}
+		else:
+			return {"status": "not_ended", "id": records[0][1]}

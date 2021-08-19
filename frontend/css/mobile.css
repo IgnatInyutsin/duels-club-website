@@ -20,4 +20,7 @@
 	.header__menu {padding: 70px 0 0 0;}
 	.header__list li a {font-size: 22px;}
 	.main-content {padding-top: 80px;}
+	.index {flex-direction: column;}
+	.index__left {width: 100%; height: auto; order: 1;}
+	.index__right {width: 100%; height: auto; order: 0;}
 }

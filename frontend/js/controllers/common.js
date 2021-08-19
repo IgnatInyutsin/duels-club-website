@@ -3,28 +3,36 @@
 */
 main.controller('common',function($scope,$http,$location,$cookies){
 
-    // Кнопка перемотки вверх
-    $scope.showUpButton = false;
+    $scope.showUpButton = false; // Кнопка перемотки вверх
 
-    // Функция перемотки вверх
-    $scope.pageTop = function(){
+    $scope.pageTop = function(){ // Функция перемотки вверх
         $("html, body").animate({ scrollTop: 0 }, 600);
         return false;
     }
-    //если переходят по пустому хэшу то редирект на главную страницу
-    if(document.location.hash=="")document.location.hash='!/index/';
 
-    //обновление кэша
-    function checkForUpdate(){
-        if (window.applicationCache != undefined && window.applicationCache != null) {
-            window.applicationCache.addEventListener('updateready', updateApplication);
-        }
+    if(document.location.hash=="")document.location.hash='!/index/'; //если переходят по пустому хэшу то редирект на главную страницу
+
+    if (!$cookies.get('session')) { //проверка сессии
+        //если нет
+        $scope.userID = 0
+        $scope.loginBool = false
     }
-
-    function updateApplication(event) {
-        if (window.applicationCache.status != 4) return;
-        window.applicationCache.removeEventListener('updateready', updateApplication);
-        window.applicationCache.swapCache();
-        window.location.reload();
+    else { //если есть
+        $.ajax({ //сравниваем сессию с базой данных с помощью запроса
+            url: 'http://localhost:82/get_data',
+            method: 'get',
+            dataType: 'json',
+            data: {sql: 'session' + $cookies.get('session')},
+            success: function(data){ //если удачный выполняем асинхронную функцию
+                $scope.userID = data.id
+                if (data.status != "not_ended") { //если действительна
+                    $scope.loginBool = false
+                    $scope.userID = 0
+                }
+                else { //если не действительна
+                    $scope.loginBool = true
+                }
+            }
+        });
     }
 });

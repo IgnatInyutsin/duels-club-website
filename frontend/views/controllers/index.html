@@ -1,1 +1,94 @@
 <meta http-equiv="Cache-Control" content="no-cache">
+
+<div class="index"> <!-- flex- контейнер для левого и правого блока -->
+	
+
+	<div class="index__left"> <!-- левый блок -->
+		<!-- Блоки с данными -->
+		<div class="content__block">
+			<div class="content__block__title">Последняя игра</div> 
+			<div class="content__block__text">
+				<div class="content__block__paragraph" style="text-align: center;">
+					ishao vs Yapik
+				</div>
+				<div class="content__block__paragraph" style="margin-top: 20px;">
+					ishao: Эта игра была сложной, но я смог победить.
+				</div>
+			</div>
+		</div>
+
+		<div class="content__block"> 
+			<div class="content__block__title">
+				Новость 1
+			</div>
+			<div class="content__block__text">
+				<div class="content__block__paragraph">Текст новости 1</div>
+				<div class="content__block__paragraph">Текст новости 2</div>
+				<div class="content__block__paragraph">Текст новости 3</div>
+			</div>
+		</div>
+
+		<div class="content__block">
+			<div class="content__block__title">
+				Новость 2
+			</div>
+			<div class="content__block__text">
+				<div class="content__block__paragraph">Текст новости 1</div>
+				<div class="content__block__paragraph">Текст новости 2</div>
+				<div class="content__block__paragraph">Текст новости 3</div>
+			</div>
+		</div>
+
+		<div class="content__block">
+			<div class="content__block__title">
+				Новость 3
+			</div>
+			<div class="content__block__text">
+				<div class="content__block__paragraph">Текст новости 1</div>
+				<div class="content__block__paragraph">Текст новости 2</div>
+				<div class="content__block__paragraph">Текст новости 3</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="index__right"> <!-- правый блок -->
+		<!-- Блоки с данными -->
+		<div class="content__block" id="unloginWindow"> <!-- кнопка выхода -->
+			<div class="login__button">
+				<button type="button" name="unloginButton" class="btn btn-secondary reg_btn" ng-click="unlogin()">Выйти</button>
+			</div>
+		</div>
+
+		<div class="content__block" id="loginWindow"> <!-- кнопка входа -->
+			<input type="text" class="form-control login__place" id="nickname" placeholder="Никнейм">
+			<input type="password" class="form-control login__place" id="password" placeholder="Пароль">
+			<div class="login__button">
+				<button type="button" name="loginButton" class="btn btn-secondary reg_btn" ng-click="login()">Войти</button>
+			</div>
+		</div>
+
+		<div class="content__block"> <!-- цикл по переменной в js для вывода последних игр-->
+			<div class="content__block__title">Последние игры</div>
+			<div class="content__block__text" style="text-align: center;">
+				<div class="content__block__paragraph">ishao vs Yapik</div>
+			</div>
+		</div>
+
+		<div class="content__block"> <!-- цикл по переменной в js для вывода новичков-->
+			<div class="content__block__title">Новички</div>
+			<div class="content__block__text" ng-repeat="member in newers track by $index" style="text-align: center;"> 
+				<div class="content__block__paragraph">{{member[1]}}. {{member[0]}}</div>
+			</div>
+		</div>
+
+		<div class="content__block"> <!-- цикл по переменной в js для вывода лучших игроков -->
+			<div class="content__block__title">Лучшие игроки</div>
+			<div class="content__block__text" ng-repeat="top in topThree track by $index" style="text-align: center;">
+				<div class="content__block__paragraph">{{top[1]}}. {{top[0]}}</div>
+			</div>
+		</div>
+
+	</div>
+</div>
