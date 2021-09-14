@@ -77,7 +77,7 @@ main.controller('get_result',function($scope,$http,$location,$cookies){
 			let resultBlock = new Block({
 				$scope: $scope,
 				$cookies: $cookies,
-				id: "ResultBlock"
+				id: "getResultBlock"
 			})
 			.hidden();
 		}
