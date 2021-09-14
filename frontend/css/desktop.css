@@ -38,3 +38,7 @@ table.table-1 th {font-weight: bold;}
 .login__place, .login__place:focus, .login__place:before {color: #fff; background-color: #383838; border-color: #383838; width: 90%; margin-left: auto; margin-right: auto; margin-top: 10px;}
 .login__button {width: 90%; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;}
 .reg_btn, .reg_btn:hover, .reg_btn:before {width: 100%; border-color: #383838; text-align: center; background-color: #383838;}
+/*Сообщить результат*/
+.get_result__content {min-height: 100%; width: 100%;}
+.result__select, .result__select:hover, .result__select:focus {color: #fff; background-color: #383838; border-color: #383838;}
+.ui-autocomplete, .ui-state-hover, .ui-state-active, .ui-state-focus{color: #fff; background-color: #383838; border-color: #383838;}

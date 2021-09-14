@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify, request, Response
-import migrations, getData, addData
+import migrations, getData, addData, getResult
 import json
 
 app = Flask(__name__)
@@ -31,5 +31,13 @@ def get_data():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
+@app.route('/get_result', methods=['GET'])
+def get_result():
+    #Результат функции делаем str
+    resp = Response(json.dumps(getResult.main(request.args['myID'], request.args['opponentNick'], request.args['gameResult'], request.args['gameComment']), sort_keys=True, indent=2, ensure_ascii=False, default=str))
+    #Ставим заголовки
+    resp.headers['Content-Type'] = "application/json"
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

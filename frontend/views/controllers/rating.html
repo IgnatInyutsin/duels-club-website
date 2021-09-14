@@ -11,14 +11,13 @@
 			<tr> <!-- Заголовки -->
 				<th>ТОП</th>
 				<th>ИМЯ</th>
-				<th>DRP</th>
+				<th>ELO</th>
 				<th>ПОБЕД</th>
 				<th>ПОРАЖЕНИЙ</th>
 				<th>НИЧЕЙ</th>
 				<th>ИГР ВСЕГО</th>
-				<th>МАКС DRP</th>
+				<th>МАКС ELO</th>
 				<th>ПРОЦЕНТ ПОБЕД</th>
-				<th>КОМАНДА</th>
 			</tr>
 
 			<tr ng-repeat="member in rating"> <!-- Цикл по массиву rating в $scope, который заполняет таблицу-->
@@ -31,7 +30,6 @@
 				<td title="ИГР ВСЕГО">{{member[2]+member[3]+member[4]}}</td>
 				<td title="МАКС DRP">{{member[5]}}</td>
 				<td title="ПРОЦЕНТ ПОБЕД">{{member[8]}}{{"%"}}</td>
-				<td title="КОМАНДА">{{member[6]}}</td>
 			</tr>
 		</table>
 	</div>

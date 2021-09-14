@@ -17,7 +17,7 @@ main.config(function($routeProvider){
         templateUrl:"views/controllers/rating.html"
     });
 
-    $routeProvider.when("/members/",{
+    $routeProvider.when("/members/:memberID?",{
         controller: "members",
         templateUrl: "views/controllers/members.html"
     });

@@ -9,44 +9,21 @@
 			<div class="content__block__title">Последняя игра</div> 
 			<div class="content__block__text">
 				<div class="content__block__paragraph" style="text-align: center;">
-					ishao vs Yapik
+					Функция недоступна
 				</div>
 				<div class="content__block__paragraph" style="margin-top: 20px;">
-					ishao: Эта игра была сложной, но я смог победить.
+					Комментарий: None
 				</div>
 			</div>
 		</div>
 
 		<div class="content__block"> 
 			<div class="content__block__title">
-				Новость 1
+				Сайт приступил к открытой работе
 			</div>
 			<div class="content__block__text">
-				<div class="content__block__paragraph">Текст новости 1</div>
-				<div class="content__block__paragraph">Текст новости 2</div>
-				<div class="content__block__paragraph">Текст новости 3</div>
-			</div>
-		</div>
-
-		<div class="content__block">
-			<div class="content__block__title">
-				Новость 2
-			</div>
-			<div class="content__block__text">
-				<div class="content__block__paragraph">Текст новости 1</div>
-				<div class="content__block__paragraph">Текст новости 2</div>
-				<div class="content__block__paragraph">Текст новости 3</div>
-			</div>
-		</div>
-
-		<div class="content__block">
-			<div class="content__block__title">
-				Новость 3
-			</div>
-			<div class="content__block__text">
-				<div class="content__block__paragraph">Текст новости 1</div>
-				<div class="content__block__paragraph">Текст новости 2</div>
-				<div class="content__block__paragraph">Текст новости 3</div>
+				<div class="content__block__paragraph">Сайт приступил к открытой работе в 7 классе СРЦОД. Чтобы вступить в рейтинг требуется обратиться к "Игнату", после в течении некоторого времени вы получите ответ.</div>
+				<div class="content__block__paragraph">Большинство функций на данный момент недоступны и будут появляться со временем.</div>
 			</div>
 		</div>
 
@@ -57,7 +34,7 @@
 		<!-- Блоки с данными -->
 		<div class="content__block" id="unloginWindow"> <!-- кнопка выхода -->
 			<div class="login__button">
-				<button type="button" name="unloginButton" class="btn btn-secondary reg_btn" ng-click="unlogin()">Выйти</button>
+				<button type="button" name="unloginButton" id="unloginButton" class="btn btn-secondary reg_btn" ng-click="unlogin.click()">Выйти</button>
 			</div>
 		</div>
 
@@ -65,14 +42,14 @@
 			<input type="text" class="form-control login__place" id="nickname" placeholder="Никнейм">
 			<input type="password" class="form-control login__place" id="password" placeholder="Пароль">
 			<div class="login__button">
-				<button type="button" name="loginButton" class="btn btn-secondary reg_btn" ng-click="login()">Войти</button>
+				<button type="button" name="loginButton" id="loginButton" class="btn btn-secondary reg_btn" ng-click="login.click()">Войти</button>
 			</div>
 		</div>
 
 		<div class="content__block"> <!-- цикл по переменной в js для вывода последних игр-->
 			<div class="content__block__title">Последние игры</div>
 			<div class="content__block__text" style="text-align: center;">
-				<div class="content__block__paragraph">ishao vs Yapik</div>
+				<div class="content__block__paragraph">Функция недоступна</div>
 			</div>
 		</div>
 

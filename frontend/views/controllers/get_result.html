@@ -1,1 +1,32 @@
 <meta http-equiv="Cache-Control" content="no-cache">
+
+<div class="get_result__content">
+
+	<div class="content__block" id="error_block">
+		<div class="content__block__title">Войдите в свой аккаунт</div>
+	</div>
+
+	<div class="content__block" id="getResultBlock">
+
+		<div class="content__block__title">Сообщить результат</div>
+
+		<div class="content__block__text">
+
+			<div class="content__block__text__paragraph" style="width: 100%; text-align: center;">
+				{{userNick}} 
+			</div>
+			<select class="result__select form-control" id="resultOfGame" style="max-width: 300px; margin-right: auto; margin-left: auto;">
+				<option value="none">Выберите результат</option>
+				<option value="win">выиграл</option>
+				<option value="draw">сыграл в ничью с</option>
+				<option value="defeat">проиграл</option>
+			</select>
+			<input type="text" class="form-control login__place" id="opponentNick" style="max-width: 300px; margin-right: auto; margin-left: auto;" placeholder="Никнейм оппонента">
+
+			<input type="textarea" class="login__place form-control" id="gameComment" style="max-width: 300px; margin-right: auto; margin-left: auto;" placeholder="Комментарий к игре">
+			<div class="login__button"  style="max-width: 300px; margin-left: auto; margin-right: auto;">
+				<button type="button" id="gameSendBut" class="btn btn-secondary reg_btn" style="max-width: 300px; margin-left: auto; margin-right: auto;" disabled ng-click="sendGameButton.click()">Отправить</button>
+			</div>
+	</div>
+
+</div>

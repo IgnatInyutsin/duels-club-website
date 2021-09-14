@@ -1,0 +1,22 @@
+class DataCollector extends ProjectObject { //для сборщиков информации
+	constructor(options) {
+		super(options);
+		this.requestData = options.requestData
+		this.extFunction = options.extFunction
+		this.responseData = []
+	}
+
+	takeBackendData() {
+		let caller = this
+		$.ajax({ //делаем запрос 
+			url: 'http://localhost:82/get_data',
+			method: 'get',
+			dataType: 'json',
+			data: this.requestData,
+			success: function(data){ //если удачный запрос выполняем асинхронную функцию
+				caller.responseData = data //передаем в переменную
+				caller.extFunction(caller); //выполняем побочную функцию
+			}
+		});
+	}
+}

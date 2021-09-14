@@ -1,32 +1,24 @@
-//контроллер для шапки, подключается в index.html
 main.controller('header',function($scope,$http,$location,$cookies){
-  
-  //функция которая срабатывает при клике бургера
-  $scope.burgerClass = function() {
-    //если имеет класс deactive то ставим класс active меню, иначе наоборот
-    if ( $('.header__menu').hasClass("deactive") ) {
-      $('.header__menu').removeClass("deactive")
-      $('.header__menu').addClass("active")
-    }
-    else {
-      $('.header__menu').removeClass("active")
-      $('.header__menu').addClass("deactive")
-    }
+	//объект бургер
+	let burger = new Button ({
+		$scope: $scope,
+		$cookies: $cookies,
+		id: "burger",
+		clickFunction: function () { //при нажатии
+			if ( $('.header__menu').hasClass("deactive") ) { //если неактивное делаем активным
+				$('.header__menu').removeClass("deactive");
+				$('.header__menu').addClass('active');
+			}
+			else { //если активное делаем деактивным
+				$('.header__menu').removeClass('active');
+				$('.header__menu').addClass('deactive');
+			}
 
-    //тоже самое, но без deactive у бургера
-    $('.header__burger').toggleClass('active');
-    //переключение класса lock для блокирования скролла
-    $('body').toggleClass('lock');
-  }
-  
+			//переключаем стили у бургера и body, у body для блокировки скролла
+			$('.header__burger').toggleClass('active');
+			$('body').toggleClass('active');
+		}
+	});
 
-  //по клику в элементы меню менюшка закрывается
-  $scope.close = function() {
-    if ( $('.header__menu').hasClass("active") ) {
-      $('.header__menu').removeClass("active");
-      $('.header__menu').addClass("deactive");
-      $('body').toggleClass('lock');
-      $('.header__burger').toggleClass('active');
-    }
-  }
+	$scope.burger = burger
 });

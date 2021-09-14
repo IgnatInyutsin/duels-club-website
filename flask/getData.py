@@ -10,15 +10,14 @@ def main(data):
 	#устанавливаем курсор
 	cursor = db.cursor()
 	# Делаем запрос если в data значение из ветвлений
+
 	if data=="rating":
 		#Собираем всех в рейтинге
 		cursor.execute('''
-			SELECT member.nickname, member.drp, member.wins,
-			member.defeat, member.draw, member.maxdrp, team.name 
+			SELECT member.nickname, member.elo, member.wins,
+			member.defeat, member.draw, member.max_elo
 			FROM member 
-			JOIN team ON member.commandid = team.teamid
-			WHERE wins+defeat+draw > 2
-			ORDER BY drp DESC, wins+defeat+draw DESC;''')
+			ORDER BY elo DESC, wins+defeat+draw DESC;''')
 		records=cursor.fetchall()
 
 		return records
@@ -37,7 +36,7 @@ def main(data):
 		cursor.execute('''
 			SELECT member.nickname
 			FROM member
-			ORDER BY drp DESC
+			ORDER BY elo DESC
 			LIMIT 3;''')
 		records=cursor.fetchall()
 
@@ -55,16 +54,42 @@ def main(data):
 	elif data[:7]=="session":
 		#берем данные о просрочке
 		cursor.execute('''
-			SELECT session.ended, session.userid
+			SELECT session.ended, session.user_id, member.nickname
 			FROM session
-			WHERE sessionid = '{}';'''.format(data[7:]))
+			JOIN member ON session.user_id = member.id
+			WHERE session_id = '{}';'''.format(data[7:]))
 		records=cursor.fetchall()
 		#если просрочилось удаляем и сообщаем что просрочено
 		if records[0][0] <= time.time():
 			cursor.execute('''
 				DELETE FROM session 
-				WHERE sessionid = '{}' '''.format(data[7:]))
+				WHERE session_id = '{}' '''.format(data[7:]))
 			db.commit()
 			return {"status": "ended"}
 		else:
-			return {"status": "not_ended", "id": records[0][1]}
+			return {"status": "not_ended", "id": [records[0][1], records[0][2]]}
+
+	elif data=="allMember": #собираем все ники
+		cursor = db.cursor()
+
+		cursor.execute("SELECT member.nickname FROM member;")
+		records=cursor.fetchall()
+
+		return records
+
+	elif data[:9]=="OneMember":
+		cursor = db.cursor()
+		#забираем из бд необходимые данные об одном участнике
+		cursor.execute('''
+			SELECT * FROM
+				(SELECT ROW_NUMBER() OVER
+					(ORDER BY elo DESC, wins+defeat+draw DESC),
+				member.elo,
+				member.wins,
+				member.defeat,
+				member.draw
+				FROM member)
+					AS all_data
+				WHERE id = {}
+			'''.format(data[9:]))
+		records = list(cursor.fetchone())

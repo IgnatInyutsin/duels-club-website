@@ -5,33 +5,23 @@ passcache VARCHAR(129) NOT NULL,
 wins SMALLINT,
 defeat SMALLINT,
 draw SMALLINT,
-drp SMALLINT NOT NULL,
-maxDRP SMALLINT NOT NULL,
-commandID SMALLINT);
+elo SMALLINT NOT NULL,
+max_elo SMALLINT NOT NULL);
 
 CREATE TABLE IF NOT EXISTS session
 (id SERIAL NOT NULL PRIMARY KEY,
-userID INTEGER NOT NULL,
-sessionid VARCHAR(129) NOT NULL,
+user_id INTEGER NOT NULL,
+session_id VARCHAR(129) NOT NULL,
 created INTEGER NOT NULL,
 ended INTEGER NOT NULL);
 
 CREATE TABLE IF NOT EXISTS match
 (matchID SERIAL NOT NULL PRIMARY KEY,
 result SMALLINT NOT NULL,
-firstPlayerID INTEGER NOT NULL,
-secondPlayerID INTEGER NOT NULL,
-firstDRP SMALLINT NOT NULL,
-secondDRP SMALLINT NOT NULL,
-firstRateChange SMALLINT,
-secondRateChange SMALLINT,
-commentary TEXT,
-status SMALLINT NOT NULL);
-
-CREATE TABLE IF NOT EXISTS team
-(teamID SERIAL NOT NULL PRIMARY KEY,
-name VARCHAR(120),
-top SMALLINT NOT NULL,
-logo TEXT,
-description TEXT,
-color VARCHAR(20));
+first_player_id INTEGER NOT NULL,
+second_player_id INTEGER NOT NULL,
+first_player_elo SMALLINT NOT NULL,
+second_player_elo SMALLINT NOT NULL,
+first_elo_change SMALLINT,
+second_elo_change SMALLINT,
+commentary TEXT);

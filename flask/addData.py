@@ -14,7 +14,7 @@ def main(data):
 	if data[:7]=="session":
 		#Собираем всех в рейтинге
 		cursor.execute('''
-			SELECT session.sessionid 
+			SELECT session.session_id 
 			FROM session
 			''')
 		records = cursor.fetchall()
@@ -30,7 +30,7 @@ def main(data):
 				i+=1
 		#добавление
 		cursor.execute('''
-			INSERT INTO session (userid, sessionid, created, ended) VALUES ({0}, '{1}', {2}, {3});
+			INSERT INTO session (user_id, session_id, created, ended) VALUES ({0}, '{1}', {2}, {3});
 		'''.format(data[7:], randHash, int(time.time()), int(time.time()) + 604800))
 		
 		#отправка
@@ -42,7 +42,7 @@ def main(data):
 		#удаляем сессию
 		cursor.execute('''
 			DELETE FROM session
-			WHERE sessionid = '{}';'''.format(data[11:]))
+			WHERE session_id = '{}';'''.format(data[11:]))
 
 		db.commit()
 
