@@ -9,7 +9,7 @@ class DataCollector extends ProjectObject { //для сборщиков инфо
 	takeBackendData() {
 		let caller = this
 		$.ajax({ //делаем запрос 
-			url: 'http://localhost:82/get_data',
+			url: caller.url + 'get_data',
 			method: 'get',
 			dataType: 'json',
 			data: this.requestData,

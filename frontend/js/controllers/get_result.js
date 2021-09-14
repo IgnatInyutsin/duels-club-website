@@ -23,7 +23,7 @@ main.controller('get_result',function($scope,$http,$location,$cookies){
 		}
 	});
 
-		//объект проверки на пустоту полей
+	//объект проверки на пустоту полей
 	let emptyValGame = new Checkup({
 		$cookies: $cookies,
 		$scope: $scope,
@@ -95,7 +95,7 @@ main.controller('get_result',function($scope,$http,$location,$cookies){
 			gameComment = $('input#gameComment').val();
 			//делаем запрос на бэкэнд
 			sendGameButton.joinWithBackend({
-				url: 'http://localhost:82/get_result',
+				url: 'get_result',
 				requestData: {myID: $scope.userID, opponentNick: opponentNick, gameResult: gameResult, gameComment: gameComment},
 				additionalFunc: function (data, $cookies, $scope) {
 					//обнуляем поля
@@ -104,7 +104,6 @@ main.controller('get_result',function($scope,$http,$location,$cookies){
 					$('input#gameComment').val('');
 
 					$('input#gameComment').val('Успешная отправка.');
-					console.log("yes")
 				},
 				errorFunction: function () {
 					$('input#opponentNick').val('');
@@ -112,7 +111,6 @@ main.controller('get_result',function($scope,$http,$location,$cookies){
 					$('input#gameComment').val('');
 
 					$('input#gameComment').val('Произошла ошибка.');
-					console.log("no")
 				}
 			});
 		}

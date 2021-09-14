@@ -31,7 +31,7 @@ main.controller('common',function($scope,$http,$location,$cookies, $timeout){
         },
         ifFalse: function ($scope, $cookies, $timeout) {//если присутствует то проверяем
             haveLogin.joinWithBackend({ //отправляем запрос на бэкэнд
-                url: 'http://localhost:82/get_data',
+                url: 'get_data',
                 requestData: {sql: 'session' + $cookies.get('session')},
                 additionalFunc: function (responseData, $cookies, $scope) {
                     if (responseData.status != "not_ended") { //если не действительна

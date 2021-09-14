@@ -79,7 +79,7 @@ main.controller('index',function($scope,$http,$location,$cookies){
 		$cookies: $cookies,
 		clickFunction: function ($cookies) { //действия при клике
 			$scope.login.joinWithBackend({
-				url: 'http://localhost:82/add_data',
+				url: 'add_data',
 				requestData: {sql: 'sess_remove' + $cookies.get('session')},
 				additionalFunc: function(responseData, $cookies) {
 					$cookies.remove('session'); //удаляем кук
@@ -104,7 +104,7 @@ main.controller('index',function($scope,$http,$location,$cookies){
 			let password = MD5($('input#password').val());
 
 			$scope.login.joinWithBackend({
-				url: 'http://localhost:82/get_data',
+				url: 'get_data',
 				requestData: {sql: 'login' + nickname},
 				additionalFunc: function (responseData) {
 					responseData = responseData[0] //убираем массив в массиве
@@ -120,7 +120,7 @@ main.controller('index',function($scope,$http,$location,$cookies){
 					else if (responseData[0] == password) { //если пароль верный
 
 						$scope.login.joinWithBackend({
-							url: 'http://localhost:82/add_data',
+							url: 'add_data',
 							requestData: {sql: 'session' + responseData[1].toString()},
 							additionalFunc: function (responseData, $cookies) {
 								$cookies.put('session', responseData.session); //добавляем кук с идентификатором сессии

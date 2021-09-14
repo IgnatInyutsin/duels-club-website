@@ -1,5 +1,8 @@
 class ProjectObject {
 	constructor(options) {
+		let Backend = new BackendConstructor();
+
+		this.url = Backend.adress
 		this.$scope = options.$scope //передаем $scope
 		this.$cookies = options.$cookies
 		this.$timeout = options.$timeout
@@ -10,7 +13,7 @@ class ProjectObject {
 		let caller = this
 
 		$.ajax({ //делаем запрос 
-			url: options.url,
+			url: caller.url + options.url,
 			method: 'get',
 			dataType: 'json',
 			data: options.requestData,
