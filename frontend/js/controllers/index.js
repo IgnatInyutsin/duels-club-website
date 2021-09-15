@@ -2,6 +2,17 @@ main.controller('index',function($scope,$http,$location,$cookies){
 	//контроллер страницы index
 	$scope.$parent.pageName = 'index';
 
+	//объект для сбора последних матчей
+	let matchs = new DataCollector ({
+		$scope: $scope,
+		$cookies: $cookies,
+		requestData: {sql: 'matchs'},
+		extFunction: function (caller) {
+			caller.$scope.matchs = caller.responseData //добавляем данные в $scope
+			caller.$scope.$apply();
+		}
+	});
+
 	//создаем объект для сбора списка топ-3
 	let topThree = new DataCollector ({
 		$scope: $scope,
@@ -169,4 +180,5 @@ main.controller('index',function($scope,$http,$location,$cookies){
 	//вызываем сбор данных для информации
 	topThree.takeBackendData();
 	newers.takeBackendData();
+	matchs.takeBackendData();
 });

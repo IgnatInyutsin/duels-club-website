@@ -93,3 +93,45 @@ def main(data):
 				WHERE id = {}
 			'''.format(data[9:]))
 		records = list(cursor.fetchone())
+
+		return records
+
+	elif data=="matchs":
+		cursor = db.cursor()
+		#забираем из бд данные о матчах
+		cursor.execute('''
+			SELECT member.nickname, match.result, match.matchID
+			FROM match
+			JOIN member ON match.first_player_id = member.id
+			ORDER BY matchID DESC
+			LIMIT 3;''')
+		records = list(cursor.fetchall())
+
+		for i in range(len(records)): #добавляем ник второго игрока
+			records[i] = list(records[i])
+			cursor.execute('''
+				SELECT member.nickname
+				FROM match
+				JOIN member ON match.second_player_id = member.id
+				WHERE matchID = {};
+				'''.format(records[i][2]))
+			record = cursor.fetchone()[0]
+			records[i].append(record)
+
+		output = []
+		for i in range(len(records)): #создаем массив из строк
+			#проверка результата игры
+			if records[i][1] == 1:
+				str1 = " (победитель) "
+				str2 = " (проигравший) "
+			elif records[i][1] == 0:
+				str2 = " (победитель) "
+				str1 = " (проигравший) "
+			else:
+				str1 = " (ничья) "
+				str2 = " (ничья) "
+
+
+			output.append(records[i][0] + str1 + " vs" + str2 + records[i][3])
+
+		return output

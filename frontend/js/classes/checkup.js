@@ -13,7 +13,7 @@ class Checkup extends ProjectObject { //класс для проверщиков
 		else {
 			caller.ifFalse();
 		}
-		setTimeout(caller.infinityCheck, 300, caller); //рекурсивное повторение
+		setTimeout(caller.infinityCheck, 500, caller); //рекурсивное повторение
 	}
 
 	check() { //одноразовая проверка
