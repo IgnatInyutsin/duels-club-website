@@ -81,16 +81,19 @@ def main(data):
 		cursor = db.cursor()
 		#забираем из бд необходимые данные об одном участнике
 		cursor.execute('''
-			SELECT * FROM
+			SELECT all_data.*, member.nickname FROM
 				(SELECT ROW_NUMBER() OVER
 					(ORDER BY elo DESC, wins+defeat+draw DESC),
 				member.elo,
 				member.wins,
 				member.defeat,
-				member.draw
+				member.draw,
+				member.id,
+				member.max_elo
 				FROM member)
 					AS all_data
-				WHERE id = {}
+				JOIN member ON all_data.id = member.id
+				WHERE all_data.id = {};
 			'''.format(data[9:]))
 		records = list(cursor.fetchone())
 

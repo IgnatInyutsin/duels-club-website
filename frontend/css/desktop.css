@@ -42,3 +42,6 @@ table.table-1 th {font-weight: bold;}
 .get_result__content {min-height: 100%; width: 100%;}
 .result__select, .result__select:hover, .result__select:focus {color: #fff; background-color: #383838; border-color: #383838;}
 .ui-autocomplete, .ui-state-hover, .ui-state-active, .ui-state-focus{color: #fff; background-color: #383838; border-color: #383838;}
+/*Таблица для участников*/
+table.table-3 {border-collapse: collapse; border-spacing: 0; width: 100%; color: #fff;}
+table.table-3 th, table.table-3 td {text-align: left; padding: 8px; border: 1px solid #ddd;}

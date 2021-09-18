@@ -1,4 +1,38 @@
 <meta http-equiv="Cache-Control" content="no-cache">
-	<div class="content__block" id="error_block">
-		<div class="content__block__title">Функция недоступна</div>
+<div class="content__block" id="search__member__block">
+	<div class="content__block__title">Функция недоступна</div>
+</div>
+
+<div id="member_container">
+	<div class="content__block">
+		<div class="content__block__title">Профиль участника {{dataOfMember[7]}}</div>
 	</div>
+	<div class="content__block">
+		<table class="table-3">
+			<thead>
+				<tr>
+					<th>ТОП</th>
+					<th>ELO</th>
+					<th>ПОБЕД</th>
+					<th>ПОРАЖЕНИЙ</th>
+					<th>НИЧЬИХ</th>
+					<th>ИГР ВСЕГО</th>
+					<th>МАКС ELO</th>
+					<th>ПРОЦЕНТ ПОБЕД</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td data-label="ТОП">{{dataOfMember[0]}}</td>
+					<td data-label="ELO">{{dataOfMember[1]}}</td>
+					<td data-label="ПОБЕД">{{dataOfMember[2]}}</td>
+					<td data-label="ПОРАЖЕНИЙ">{{dataOfMember[3]}}</td>
+					<td data-label="НИЧЬИХ">{{dataOfMember[4]}}</td>
+					<td data-label="ИГР ВСЕГО">{{dataOfMember[2] + dataOfMember[3] + dataOfMember[4]}}</td>
+					<td data-label="МАКС ELO">{{dataOfMember[6]}}</td>
+					<td data-label="ПРОЦЕНТ ПОБЕД">{{dataOfMember[8]}}%</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -23,4 +23,10 @@
 	.index {flex-direction: column;}
 	.index__left {width: 100%; height: auto; order: 1;}
 	.index__right {width: 100%; height: auto; order: 0;}
+	table.table-3 {border: 0;}
+	table.table-3 thead {border: none;clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px;}
+	table.table-3 tr {border-bottom: 1px solid #ddd; display: block; margin-bottom: 30px;}
+	table.table-3 td {display: block; text-align: right;}
+	table.table-3 td::before {content: attr(data-label); float: left; font-weight: bold;text-transform: uppercase;}
+	table.table-3 td:last-child {border-bottom: 0;}
 }
