@@ -2,6 +2,18 @@ main.controller('index',function($scope,$http,$location,$cookies){
 	//контроллер страницы index
 	$scope.$parent.pageName = 'index';
 
+	//объект для сбора последнего матча
+	let lastMatch = new DataCollector ({
+		$scope: $scope,
+		$cookies: $cookies,
+		requestData: {sql: 'lastMatch'},
+		extFunction: function (caller) {
+			console.log(caller.responseData)
+			caller.$scope.lastMatch = caller.responseData //добавляем данные в $scope
+			caller.$scope.$apply();
+		}
+	});
+
 	//объект для сбора последних матчей
 	let matchs = new DataCollector ({
 		$scope: $scope,
@@ -178,6 +190,7 @@ main.controller('index',function($scope,$http,$location,$cookies){
 	loginOrUnlogin.check();
 	emptyLoginVal.infinityCheck(emptyLoginVal);
 	//вызываем сбор данных для информации
+	lastMatch.takeBackendData();
 	topThree.takeBackendData();
 	newers.takeBackendData();
 	matchs.takeBackendData();

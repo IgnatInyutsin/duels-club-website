@@ -36,7 +36,7 @@ def main(data):
 		cursor.execute('''
 			SELECT member.nickname
 			FROM member
-			ORDER BY elo DESC
+			ORDER BY elo DESC, wins+defeat+draw DESC
 			LIMIT 3;''')
 		records=cursor.fetchall()
 
@@ -133,5 +133,42 @@ def main(data):
 
 
 			output.append(records[i][0] + str1 + " vs" + str2 + records[i][3])
+
+		return output
+
+	elif data=="lastMatch":
+		cursor = db.cursor()
+		#забираем из бд данные о последнем матче
+		cursor.execute('''
+			SELECT member.nickname, match.result, match.commentary, match.matchID
+			FROM match
+			JOIN member ON match.first_player_id = member.id
+			ORDER BY matchID DESC
+			LIMIT 1;''')
+		record = list(cursor.fetchone())
+
+		#добавляем ник второго игрока
+		cursor.execute('''
+			SELECT member.nickname
+			FROM match
+			JOIN member ON match.second_player_id = member.id
+			WHERE matchID = {};
+			'''.format(record[3]))
+		record.append(cursor.fetchone()[0])
+
+		output = [record[2], ""]
+		#проверка результата игры
+		if record[1] == 1:
+			str1 = " (победитель) "
+			str2 = " (проигравший) "
+		elif record[1] == 0:
+			str2 = " (победитель) "
+			str1 = " (проигравший) "
+		else:
+			str1 = " (ничья) "
+			str2 = " (ничья) "
+
+		#передаем результаты на вывод
+		output[1] = record[0] + str1 + " vs" + str2 + record[4]
 
 		return output
