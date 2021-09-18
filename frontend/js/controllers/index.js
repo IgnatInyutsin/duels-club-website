@@ -8,7 +8,6 @@ main.controller('index',function($scope,$http,$location,$cookies){
 		$cookies: $cookies,
 		requestData: {sql: 'lastMatch'},
 		extFunction: function (caller) {
-			console.log(caller.responseData)
 			caller.$scope.lastMatch = caller.responseData //добавляем данные в $scope
 			caller.$scope.$apply();
 		}
