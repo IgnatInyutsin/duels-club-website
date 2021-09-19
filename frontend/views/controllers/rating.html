@@ -5,32 +5,35 @@
 	<div class="content__block"> <!--Заголовок-->
 		<div class="content__block__title" style="margin-top: 20px;">Рейтинг</div>
 	</div>
-	
-	<div class="content__block table-wrap" style="padding-top: 20px;">
-		<table class="table"> <!--Таблица рейтинга-->
-			<tr> <!-- Заголовки -->
-				<th>ТОП</th>
-				<th>ИМЯ</th>
-				<th>ELO</th>
-				<th>ПОБЕД</th>
-				<th>ПОРАЖЕНИЙ</th>
-				<th>НИЧЕЙ</th>
-				<th>ИГР ВСЕГО</th>
-				<th>МАКС ELO</th>
-				<th>ПРОЦЕНТ ПОБЕД</th>
-			</tr>
 
-			<tr ng-repeat="member in rating"> <!-- Цикл по массиву rating в $scope, который заполняет таблицу-->
-				<td title="ТОП">{{member[7]}}</t1d>
-				<td title="ИМЯ">{{member[0]}}</td>
-				<td title="DRP">{{member[1]}}</td>
-				<td title="ПОБЕД">{{member[2]}}</td>
-				<td title="ПОРАЖЕНИЙ">{{member[3]}}</td>
-				<td title="НИЧЕЙ">{{member[4]}}</td>
-				<td title="ИГР ВСЕГО">{{member[2]+member[3]+member[4]}}</td>
-				<td title="МАКС DRP">{{member[5]}}</td>
-				<td title="ПРОЦЕНТ ПОБЕД">{{member[8]}}{{"%"}}</td>
-			</tr>
+	<div class="content__block">
+		<table class="table-3"> <!--Таблица рейтинга-->
+			<thead>
+				<tr> <!-- Заголовки -->
+					<th>ТОП</th>
+					<th>ИМЯ</th>
+					<th>ELO</th>
+					<th>ПОБЕД</th>
+					<th>ПОРАЖЕНИЙ</th>
+					<th>НИЧЬИХ</th>
+					<th>ИГР ВСЕГО</th>
+					<th>МАКС ELO</th>
+					<th>ПРОЦЕНТ ПОБЕД</th>
+				</tr>
+
+			<tbody>
+				<tr ng-repeat="member in rating"> <!-- Цикл по массиву rating в $scope, который заполняет таблицу-->
+					<td data-label="ТОП">{{member[8]}}</t1d>
+					<td data-label="ИМЯ"><a ng-href="#!/members/{{member[6]}}">{{member[0]}}</a></td>
+					<td data-label="DRP">{{member[1]}}</td>
+					<td data-label="ПОБЕД">{{member[2]}}</td>
+					<td data-label="ПОРАЖЕНИЙ">{{member[3]}}</td>
+					<td data-label="НИЧЬИХ">{{member[4]}}</td>
+					<td data-label="ИГР ВСЕГО">{{member[2]+member[3]+member[4]}}</td>
+					<td data-label="МАКС DRP">{{member[5]}}</td>
+					<td data-label="ПРОЦЕНТ ПОБЕД">{{member[9]}}{{"%"}}</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </div>

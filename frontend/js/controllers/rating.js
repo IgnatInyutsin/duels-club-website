@@ -7,9 +7,10 @@ main.controller('rating',function($scope,$http,$location,$cookies){
 		requestData: {sql: 'rating'},
 		extFunction: function (caller) {
 			for (i=0; i<caller.responseData.length; i++) { 
-				caller.responseData[i][7] = i+1 //добавляем в каждый массив номер в топе
-				caller.responseData[i][8] = parseInt(caller.responseData[i][2]/(caller.responseData[i][2]+caller.responseData[i][3]+caller.responseData[i][4])*100); //процент побед
+				caller.responseData[i][8] = i+1 //добавляем в каждый массив номер в топе
+				caller.responseData[i][9] = parseInt(caller.responseData[i][2]/(caller.responseData[i][2]+caller.responseData[i][3]+caller.responseData[i][4])*100); //процент побед
 			}
+			console.log(caller.responseData)
 
 			caller.$scope.rating = caller.responseData //добавляем данные в $scope
 			caller.$scope.$apply();

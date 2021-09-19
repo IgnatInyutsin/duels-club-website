@@ -58,14 +58,14 @@
 		<div class="content__block"> <!-- цикл по переменной в js для вывода новичков-->
 			<div class="content__block__title">Новички</div>
 			<div class="content__block__text" ng-repeat="member in newers track by $index" style="text-align: center;"> 
-				<div class="content__block__paragraph">{{member[1]}}. {{member[0]}}</div>
+				<div class="content__block__paragraph"><a ng-href="#!/members/{{member[1]}}">{{member[2]}}. {{member[0]}}</a></div>
 			</div>
 		</div>
 
 		<div class="content__block"> <!-- цикл по переменной в js для вывода лучших игроков -->
 			<div class="content__block__title">Лучшие игроки</div>
 			<div class="content__block__text" ng-repeat="top in topThree track by $index" style="text-align: center;">
-				<div class="content__block__paragraph">{{top[1]}}. {{top[0]}}</div>
+				<div class="content__block__paragraph"><a ng-href="#!/members/{{top[1]}}">{{top[2]}}. {{top[0]}}</a></div>
 			</div>
 		</div>
 

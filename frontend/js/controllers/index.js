@@ -31,7 +31,7 @@ main.controller('index',function($scope,$http,$location,$cookies){
 		requestData: {sql: 'top3'},
 		extFunction: function (caller) {
 			for (i=0; i<caller.responseData.length; i++) { //добавляем порядковые номера
-				caller.responseData[i][1] = i+1
+				caller.responseData[i][2] = i+1
 			}
 
 			caller.$scope.topThree = caller.responseData //добавляем данные в $scope
@@ -46,7 +46,7 @@ main.controller('index',function($scope,$http,$location,$cookies){
 		requestData: {sql:'newers'},
 		extFunction: function (caller) {
 			for (i=0; i<caller.responseData.length; i++) { //добавляем порядковые номера
-				caller.responseData[i][1] = i+1
+				caller.responseData[i][2] = i+1
 			}
 
 			caller.$scope.newers = caller.responseData //добавляем данные в $scope

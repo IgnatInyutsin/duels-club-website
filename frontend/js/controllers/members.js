@@ -22,6 +22,17 @@ main.controller('members',function($scope,$http,$location,$cookies, $routeParams
 		}
 	});
 
+	//объект для получения матчей
+	let oneMemberMatchs = new DataCollector ({
+		$scope: $scope,
+		$cookies: $cookies,
+		requestData: {sql: 'matchsOfMember' + $routeParams.memberID},
+		extFunction: function (caller) {
+			caller.$scope.dataOfMemberMatchs = caller.responseData
+			caller.$scope.$apply();
+		}
+	});
+
 	//проверки
 	//проверка на строку в браузере
 	let memberIdCheckup = new Checkup({
@@ -47,6 +58,7 @@ main.controller('members',function($scope,$http,$location,$cookies, $routeParams
 					.hidden();
 				}
 			});
+			oneMemberMatchs.takeBackendData();
 		},
 		ifFalse: function() {
 			let memberData = new Block({//убираем блок с игроком
@@ -60,5 +72,4 @@ main.controller('members',function($scope,$http,$location,$cookies, $routeParams
 
 	//запускаем проверку
 	memberIdCheckup.check();
-
 });

@@ -15,7 +15,7 @@ def main(data):
 		#Собираем всех в рейтинге
 		cursor.execute('''
 			SELECT member.nickname, member.elo, member.wins,
-			member.defeat, member.draw, member.max_elo
+			member.defeat, member.draw, member.max_elo, member.id
 			FROM member 
 			ORDER BY elo DESC, wins+defeat+draw DESC;''')
 		records=cursor.fetchall()
@@ -24,7 +24,7 @@ def main(data):
 
 	elif data=="newers":
 		cursor.execute('''
-			SELECT member.nickname
+			SELECT member.nickname, member.id
 			FROM member 
 			ORDER BY id DESC
 			LIMIT 3;''')
@@ -34,7 +34,7 @@ def main(data):
 
 	elif data=="top3":
 		cursor.execute('''
-			SELECT member.nickname
+			SELECT member.nickname, member.id
 			FROM member
 			ORDER BY elo DESC, wins+defeat+draw DESC
 			LIMIT 3;''')
@@ -173,5 +173,55 @@ def main(data):
 
 		#передаем результаты на вывод
 		output[1] = record[0] + str1 + " vs" + str2 + record[4]
+
+		return output
+
+	elif data[:14]=="matchsOfMember":
+		cursor = db.cursor()
+
+		#забираем все матчи с участием определенного игрока
+		cursor.execute('''
+			SELECT match.first_player_id, match.second_player_id, match.matchID
+			FROM match
+			WHERE (first_player_id = {}) OR (second_player_id = {})
+			ORDER BY matchID DESC;
+		'''.format(data[14:], data[14:]))
+
+		records = cursor.fetchall()
+		output = []
+
+		#проходим по каждой строке отдельно и выполняем действия в соответствии, первый он игрок или второй
+		for i in range(len(records)):
+			if records[i][0] == int(data[14:]):
+				cursor.execute('''
+					SELECT match.result, member.nickname, member.id, match.first_player_elo, match.first_elo_change
+					FROM match
+					JOIN member ON match.second_player_id = member.id
+					WHERE first_player_id = {} AND matchID = {};
+				'''.format(data[14:], records[i][2]))
+				#изменяем результат
+				record = cursor.fetchone()
+				if record[0] == 1:
+					output.append(['Победа'] + list(record[1:]) + ['first'])
+				elif record[0] == -1:
+					output.append(['Ничья'] + list(record[1:]) + ['first'])
+				elif record[0] == -1:
+					output.append(['Поражение'] + list(record[1:]) + ['first'])
+
+			elif records[i][1] == int(data[14:]):
+				cursor.execute('''
+					SELECT match.result, member.nickname, member.id, match.second_player_elo, match.second_elo_change
+					FROM match
+					JOIN member ON match.first_player_id = member.id
+					WHERE second_player_id = {} AND matchID = {};
+				'''.format(data[14:], records[i][2]))
+				#изменяем результат
+				record = cursor.fetchone()
+				if record[0] == 1:
+					output.append(['Поражение'] + list(record[1:]) + ['first'])
+				elif record[0] == -1:
+					output.append(['Ничья'] + list(record[1:]) + ['first'])
+				elif record[0] == -1:
+					output.append(['Победа'] + list(record[1:]) + ['first'])
 
 		return output

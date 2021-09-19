@@ -1,6 +1,8 @@
 /*Тело*/
 body {background-color: #212121;}
 .main-content {max-width: 1140px; padding-top: 100px; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px;}
+/*Ссылки*/
+a, a:link, a:visited, a:hover, a:focus, a:active {text-decoration: none;}
 /*Шапка*/
 .header {position: fixed; width: 100%; top: 0; left: 0; z-index: 50;}
 .header:before {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #252525; z-index: 3;}
@@ -44,4 +46,4 @@ table.table-1 th {font-weight: bold;}
 .ui-autocomplete, .ui-state-hover, .ui-state-active, .ui-state-focus{color: #fff; background-color: #383838; border-color: #383838;}
 /*Таблица для участников*/
 table.table-3 {border-collapse: collapse; border-spacing: 0; width: 100%; color: #fff;}
-table.table-3 th, table.table-3 td {text-align: left; padding: 8px; border: 1px solid #ddd;}
+table.table-3 th, table.table-3 td {text-align: left; padding: 8px; border: none; text-align: center;}
