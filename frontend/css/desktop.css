@@ -2,7 +2,7 @@
 body {background-color: #212121;}
 .main-content {max-width: 1140px; padding-top: 100px; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px;}
 /*Ссылки*/
-a, a:link, a:visited, a:hover, a:focus, a:active {text-decoration: none;}
+a, a:link, a:visited, a:hover, a:focus, a:active {text-decoration: none; color: #6699CC;}
 /*Шапка*/
 .header {position: fixed; width: 100%; top: 0; left: 0; z-index: 50;}
 .header:before {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #252525; z-index: 3;}
@@ -10,7 +10,7 @@ a, a:link, a:visited, a:hover, a:focus, a:active {text-decoration: none;}
 .container {max-width: 1180px; margin: 0 auto; padding: 0 10px;}
 .header__list {display: flex; position: relative; z-index: 3;}
 .header__list li {list-style: none; margin-left: 20px;}
-.header__link {color: #fff; font-size: 18px; text-transform: uppercase; text-decoration: none;}
+.header__link {color: #fff !important; font-size: 18px; text-transform: uppercase; text-decoration: none;}
 .header__logo {position: relative; flex: 0 0 60px; z-index: 5;}
 .header__logo img {max-width: 100%; border-radius: 50%; display: block;}
 .header__burger {display: none; z-index: 5;}
