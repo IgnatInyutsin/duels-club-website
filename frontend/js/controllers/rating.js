@@ -10,7 +10,6 @@ main.controller('rating',function($scope,$http,$location,$cookies){
 				caller.responseData[i][8] = i+1 //добавляем в каждый массив номер в топе
 				caller.responseData[i][9] = parseInt(caller.responseData[i][2]/(caller.responseData[i][2]+caller.responseData[i][3]+caller.responseData[i][4])*100); //процент побед
 			}
-			console.log(caller.responseData)
 
 			caller.$scope.rating = caller.responseData //добавляем данные в $scope
 			caller.$scope.$apply();

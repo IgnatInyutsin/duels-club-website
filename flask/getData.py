@@ -238,7 +238,7 @@ def main(data):
 		'''.format(data[16:], data[16:]))
 		records = cursor.fetchall()
 
-		output = [[], [0]]
+		output = [[], ["0 партий"]]
 		#сортируем данные
 		for i in range(len(records)):
 			if records[i][2] == int(data[16:]):
@@ -246,7 +246,7 @@ def main(data):
 			else:
 				output[0].append(records[i][1])
 			#добавляес номер из числового ряда
-			output[1].append(i+1)
+			output[1].append(str(i+1) + "парти(я/й)")
 
 		#добавляем в список начальный рейтинг
 		output[0] = [1500] + output[0]
