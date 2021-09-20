@@ -3,8 +3,8 @@ main.controller('members',function($scope,$http,$location,$cookies, $routeParams
 	$scope.$parent.pageName = 'members';
 
 	//собиратели информации
-	//объект для сбора последних матчей
 
+	//объект для сбора общей инфы
 	let oneMember = new DataCollector ({
 		$scope: $scope,
 		$cookies: $cookies,
@@ -14,7 +14,7 @@ main.controller('members',function($scope,$http,$location,$cookies, $routeParams
 			caller.$scope.dataOfMember = caller.responseData //добавляем данные в $scope
 			caller.$scope.$apply();
 			//скрываем блок с поиском
-			let memberData = new Block({
+			let memberSearch = new Block({
 				$scope: $scope,
 				$cookies: $cookies,
 				id: "search__member__block"

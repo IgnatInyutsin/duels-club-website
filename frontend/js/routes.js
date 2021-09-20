@@ -22,7 +22,7 @@ main.config(function($routeProvider){
         templateUrl: "views/controllers/members.html"
     });
 
-    $routeProvider.when("/matches/",{
+    $routeProvider.when("/matches/:matchID?",{
         controller: "matches",
         templateUrl: "views/controllers/matches.html"
     });

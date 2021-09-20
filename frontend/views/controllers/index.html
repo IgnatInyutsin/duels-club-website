@@ -6,7 +6,7 @@
 	<div class="index__left"> <!-- левый блок -->
 		<!-- Блоки с данными -->
 		<div class="content__block">
-			<div class="content__block__title">Последняя игра</div> 
+			<div class="content__block__title"><a ng-href="#!/matches/{{lastMatch[2]}}">Последняя игра</a></div> 
 			<div class="content__block__text">
 				<div class="content__block__paragraph" style="text-align: center;">
 					{{lastMatch[1]}}
@@ -19,18 +19,32 @@
 
 		<div class="content__block"> 
 			<div class="content__block__title">
+				Релиз BETA 0.7
+			</div>
+			<div class="content__block__text">
+				<div class="content__block__paragraph"> Приложение обновлено до версии 0.7. Изменения: </div>
+				<div class="content__block__paragraph"> - Добавлен профиль каждого матча</div>
+				<div class="content__block__paragraph"> - Есть возможность посмотреть профиль матчей с главной страницы</div>
+				<div class="content__block__paragraph"> - Есть возможность посмотреть профиль матчей с профиля каждого игрока, тыкнув по результату </div>
+				<div class="content__block__paragraph"> - Исправлены ошибки </div>
+			</div>
+		</div>
+
+
+		<div class="content__block"> 
+			<div class="content__block__title">
 				Релиз BETA 0.5
 			</div>
 			<div class="content__block__text">
-				<div class="content__block__paragraph">Приложение обновлено до версии 0.5. Изменения:
-					- Добавлен профиль каждого участника
-					- Есть возможность посмотреть свой профиль и профиль людей в рейтинге
-					- В профиле добавлен просмотр всех сыгранных матчей, общей статистики и графика изменения ELO
-					- Полностью доделана главная страница
-					- Изменен стиль общего рейтинга
-				</div>
+				<div class="content__block__paragraph"> Приложение обновлено до версии 0.5. Изменения: </div>
+				<div class="content__block__paragraph"> - Добавлен профиль каждого участника </div>
+				<div class="content__block__paragraph"> - Есть возможность посмотреть свой профиль и профиль людей в рейтинге </div>
+				<div class="content__block__paragraph"> - В профиле добавлен просмотр всех сыгранных матчей, общей статистики и графика изменения ELO </div>
+				<div class="content__block__paragraph"> - Полностью доделана главная страница </div>
+				<div class="content__block__paragraph"> - Изменен стиль общего рейтинга </div>
 			</div>
 		</div>
+
 
 		<div class="content__block"> 
 			<div class="content__block__title">
@@ -64,9 +78,9 @@
 		<div class="content__block"> <!-- цикл по переменной в js для вывода последних игр-->
 			<div class="content__block__title">Последние игры</div>
 			<div class="content__block__text" style="text-align: center;">
-				<div class="content__block__paragraph" style="margin-bottom: 10px">{{matchs[0]}}</div>
-				<div class="content__block__paragraph" style="margin-bottom: 10px">{{matchs[1]}}</div>
-				<div class="content__block__paragraph" style="margin-bottom: 10px">{{matchs[2]}}</div>
+				<div class="content__block__paragraph" style="margin-bottom: 10px"><a ng-href="#!/matches/{{matchs[0][1]}}">{{matchs[0][0]}}</a></div>
+				<div class="content__block__paragraph" style="margin-bottom: 10px"><a ng-href="#!/matches/{{matchs[1][1]}}">{{matchs[1][0]}}</a></div>
+				<div class="content__block__paragraph" style="margin-bottom: 10px"><a ng-href="#!/matches/{{matchs[2][1]}}">{{matchs[2][0]}}</a></div>
 			</div>
 		</div>
 

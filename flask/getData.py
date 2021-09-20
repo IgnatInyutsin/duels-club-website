@@ -135,7 +135,7 @@ def main(data):
 				str2 = " (ничья) "
 
 
-			output.append(records[i][0] + str1 + " vs" + str2 + records[i][3])
+			output.append([records[i][0] + str1 + " vs" + str2 + records[i][3], records[i][2]])
 
 		return output
 
@@ -159,7 +159,7 @@ def main(data):
 			'''.format(record[3]))
 		record.append(cursor.fetchone()[0])
 
-		output = [record[2], ""]
+		output = [record[2], "", ""]
 		#проверка результата игры
 		if record[1] == 1:
 			str1 = " (победитель) "
@@ -173,6 +173,7 @@ def main(data):
 
 		#передаем результаты на вывод
 		output[1] = record[0] + str1 + " vs" + str2 + record[4]
+		output[2] = str(record[3])
 
 		return output
 
@@ -183,7 +184,7 @@ def main(data):
 		cursor.execute('''
 			SELECT match.first_player_id, match.second_player_id, match.matchID
 			FROM match
-			WHERE (first_player_id = {}) OR (second_player_id = {})
+			WHERE first_player_id = {} OR second_player_id = {}
 			ORDER BY matchID DESC;
 		'''.format(data[14:], data[14:]))
 
@@ -194,7 +195,7 @@ def main(data):
 		for i in range(len(records)):
 			if records[i][0] == int(data[14:]):
 				cursor.execute('''
-					SELECT match.result, member.nickname, member.id, match.first_player_elo, match.first_elo_change
+					SELECT match.result, member.nickname, member.id, match.first_player_elo, match.first_elo_change, match.matchID
 					FROM match
 					JOIN member ON match.second_player_id = member.id
 					WHERE first_player_id = {} AND matchID = {};
@@ -205,12 +206,12 @@ def main(data):
 					output.append(['Победа'] + list(record[1:]) + ['first'])
 				elif record[0] == -1:
 					output.append(['Ничья'] + list(record[1:]) + ['first'])
-				elif record[0] == -1:
+				elif record[0] == 0:
 					output.append(['Поражение'] + list(record[1:]) + ['first'])
 
 			elif records[i][1] == int(data[14:]):
 				cursor.execute('''
-					SELECT match.result, member.nickname, member.id, match.second_player_elo, match.second_elo_change
+					SELECT match.result, member.nickname, member.id, match.second_player_elo, match.second_elo_change, match.matchID
 					FROM match
 					JOIN member ON match.first_player_id = member.id
 					WHERE second_player_id = {} AND matchID = {};
@@ -221,7 +222,7 @@ def main(data):
 					output.append(['Поражение'] + list(record[1:]) + ['first'])
 				elif record[0] == -1:
 					output.append(['Ничья'] + list(record[1:]) + ['first'])
-				elif record[0] == -1:
+				elif record[0] == 0:
 					output.append(['Победа'] + list(record[1:]) + ['first'])
 
 		return output
@@ -252,3 +253,33 @@ def main(data):
 		output[0] = [1500] + output[0]
 
 		return output
+
+	elif data[:8] == "OneMatch":
+		cursor = db.cursor()
+
+		#забираем из бд данные о матче
+		cursor.execute('''
+			SELECT match.matchID, member.nickname, match.result, match.commentary, match.first_player_elo, match.second_player_elo, match.first_elo_change, match.second_elo_change
+			FROM match
+			JOIN member ON match.first_player_id = member.id
+			WHERE matchID = {}'''.format(data[8:]))
+		record = list(cursor.fetchone())
+
+		#добавляем ник второго игрока
+		cursor.execute('''
+			SELECT member.nickname
+			FROM match
+			JOIN member ON match.second_player_id = member.id
+			WHERE matchID = {};
+			'''.format(data[8:]))
+		record.append(cursor.fetchone()[0])
+
+		#преобразуем строку результата матча в текст
+		if record[2] == 1:
+			record[2] = "Победил"
+		elif record[2] == 0:
+			record[2] = "Проиграл"
+		else:
+			record[2] = "Ничья"
+
+		return record

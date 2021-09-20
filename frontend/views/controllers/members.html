@@ -56,7 +56,7 @@
 			<tbody>
 				<tr ng-repeat="data in dataOfMemberMatchs">
 					<td data-label="ОППОНЕНТ"><a ng-href="#!/members/{{data[2]}}">{{data[1]}}</a></td>
-					<td data-label="РЕЗУЛЬТАТ">{{data[0]}}</td>
+					<td data-label="РЕЗУЛЬТАТ"><a ng-href="#!/matches/{{data[5]}}">{{data[0]}}</a></td>
 					<td data-label="ELO ДО">{{data[3]-data[4]}}</td>
 					<td data-label="ELO ПОСЛЕ">{{data[3]}}</td>
 				</tr>
