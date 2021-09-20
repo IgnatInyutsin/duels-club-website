@@ -225,3 +225,30 @@ def main(data):
 					output.append(['Победа'] + list(record[1:]) + ['first'])
 
 		return output
+
+	elif data[:16]=="graphicForMember":
+		cursor = db.cursor()
+
+		#забираем все изменение рейтинга с начала
+		cursor.execute('''
+			SELECT match.first_player_elo, match.second_player_elo, match.first_player_id
+			FROM match
+			WHERE (first_player_id = {}) OR (second_player_id = {})
+			ORDER BY matchID ASC;
+		'''.format(data[16:], data[16:]))
+		records = cursor.fetchall()
+
+		output = [[], [0]]
+		#сортируем данные
+		for i in range(len(records)):
+			if records[i][2] == int(data[16:]):
+				output[0].append(records[i][0])
+			else:
+				output[0].append(records[i][1])
+			#добавляес номер из числового ряда
+			output[1].append(i+1)
+
+		#добавляем в список начальный рейтинг
+		output[0] = [1500] + output[0]
+
+		return output

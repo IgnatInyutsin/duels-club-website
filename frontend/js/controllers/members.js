@@ -1,9 +1,10 @@
 main.controller('members',function($scope,$http,$location,$cookies, $routeParams){
 	//контроллер страницы index
 	$scope.$parent.pageName = 'members';
-	
-	//собиратели информации информации
+
+	//собиратели информации
 	//объект для сбора последних матчей
+
 	let oneMember = new DataCollector ({
 		$scope: $scope,
 		$cookies: $cookies,
@@ -33,6 +34,35 @@ main.controller('members',function($scope,$http,$location,$cookies, $routeParams
 		}
 	});
 
+	//получение данных для графика
+	let graphicData = new DataCollector ({
+		$scope: $scope,
+		$cookies: $cookies,
+		requestData: {sql: 'graphicForMember' + $routeParams.memberID},
+		extFunction: function (caller) {
+			var ctx = document.getElementById('ratingChangeChart').getContext('2d');
+			var myChart = new Chart(ctx,
+				{
+					type: 'line',
+					data: {
+						labels: caller.responseData[1],
+						datasets: [{
+							label: 'Изменение рейтинга',
+							data: caller.responseData[0],
+							backgroundColor: [
+								'rgb(255,255,255)'
+							],
+							borderColor: [
+								'rgb(255,255,255)'
+							],
+							borderWidth: 3
+						}]
+					}
+				}
+			);
+		}
+	});
+
 	//проверки
 	//проверка на строку в браузере
 	let memberIdCheckup = new Checkup({
@@ -58,6 +88,7 @@ main.controller('members',function($scope,$http,$location,$cookies, $routeParams
 					.hidden();
 				}
 			});
+			graphicData.takeBackendData();
 			oneMemberMatchs.takeBackendData();
 		},
 		ifFalse: function() {
