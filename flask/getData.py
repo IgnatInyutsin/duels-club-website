@@ -259,7 +259,7 @@ def main(data):
 
 		#забираем из бд данные о матче
 		cursor.execute('''
-			SELECT match.matchID, member.nickname, match.result, match.commentary, match.first_player_elo, match.second_player_elo, match.first_elo_change, match.second_elo_change
+			SELECT match.matchID, member.nickname, match.result, match.commentary, match.first_player_elo, match.second_player_elo, match.first_elo_change, match.second_elo_change, member.id
 			FROM match
 			JOIN member ON match.first_player_id = member.id
 			WHERE matchID = {}'''.format(data[8:]))
@@ -267,12 +267,12 @@ def main(data):
 
 		#добавляем ник второго игрока
 		cursor.execute('''
-			SELECT member.nickname
+			SELECT member.nickname, member.id
 			FROM match
 			JOIN member ON match.second_player_id = member.id
 			WHERE matchID = {};
 			'''.format(data[8:]))
-		record.append(cursor.fetchone()[0])
+		record += [cursor.fetchone()[0:]]
 
 		#преобразуем строку результата матча в текст
 		if record[2] == 1:
@@ -281,5 +281,39 @@ def main(data):
 			record[2] = "Проиграл"
 		else:
 			record[2] = "Ничья"
+
+		return record
+
+	elif data[:8] == "allMatch":
+		cursor = db.cursor()
+
+		#забираем из бд данные о матче
+		cursor.execute('''
+			SELECT match.matchID, member.nickname, match.result, match.commentary, match.first_player_elo, match.second_player_elo, match.first_elo_change, match.second_elo_change, member.id
+			FROM match
+			JOIN member ON match.first_player_id = member.id;
+		''')
+		record = list(cursor.fetchall())
+
+		for i in range(len(record)):
+			record[i] = list(record[i])
+
+			#добавляем ник второго игрока
+			cursor.execute('''
+				SELECT member.nickname, member.id
+				FROM match
+				JOIN member ON match.second_player_id = member.id
+				WHERE matchID = {};
+			'''.format(record[i][0]))
+			record[i] += [cursor.fetchone()]
+
+
+			#преобразуем строку результата матча в текст
+			if record[i][2] == 1:
+				record[i][2] = "Победил"
+			elif record[i][2] == 0:
+				record[i][2] = "Проиграл"
+			else:
+				record[i][2] = "Ничья"
 
 		return record

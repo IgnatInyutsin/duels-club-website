@@ -2,7 +2,22 @@ main.controller('matches',function($scope,$http,$location,$cookies, $routeParams
 	//контроллер страницы index
 	$scope.$parent.pageName = 'matches';
 
-	
+	//коллекторы данных
+
+	//объект для сбора инфы о матче
+	let allMatch = new DataCollector ({
+		$scope: $scope,
+		$cookies: $cookies,
+		requestData: {sql: 'allMatch'},
+		extFunction: function (caller) {
+			//добавляем данные в $scope
+			console.log(caller.responseData);
+			caller.$scope.dataOfMatchs = caller.responseData
+			caller.$scope.$apply();
+			//скрываем блок с поиском
+		}
+	});
+
 	//объект для сбора инфы о матче
 	let oneMatch = new DataCollector ({
 		$scope: $scope,
@@ -10,6 +25,7 @@ main.controller('matches',function($scope,$http,$location,$cookies, $routeParams
 		requestData: {sql: 'OneMatch' + $routeParams.matchID},
 		extFunction: function (caller) {
 			//добавляем данные в $scope
+			console.log(caller.responseData);
 			caller.$scope.dataOfMatch = caller.responseData
 			caller.$scope.$apply();
 			//скрываем блок с поиском
@@ -54,6 +70,7 @@ main.controller('matches',function($scope,$http,$location,$cookies, $routeParams
 				id: "match_container"
 			})
 			.hidden();
+			allMatch.takeBackendData();
 		}
 	});
 
