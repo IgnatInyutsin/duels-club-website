@@ -1,5 +1,5 @@
 class BackendConstructor {
-	constructor () {
-		this.adress = "http://localhost:82/"
-	}
+    constructor() {
+        this.adress = "http://localhost:82/"
+    }
 }

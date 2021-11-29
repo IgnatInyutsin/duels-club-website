@@ -1,0 +1,37 @@
+<meta http-equiv="Cache-Control" content="no-cache">
+
+<div class="invite__content">
+
+    <div class="content__block" id="successful_registration_block">
+        <div class="content__block__title">Регистрация произошла успешна! Вы можете перейти на главную страницу и войти в свой аккаунт</div>
+    </div>
+
+    <div class="content__block" id="error_block">
+        <div class="content__block__title">Неизвестное приглашение... Возможно, срок его действия истек.</div>
+    </div>
+
+    <div class="content__block" id="registration_block">
+
+        <div class="content__block__title">Регистрация</div>
+
+        <div class="content__block__text">
+
+            <input type="text" class="form-control login__place" id="nickname"
+                   style="max-width: 300px; margin-right: auto; margin-left: auto;" placeholder="Ваш никнейм">
+
+            <input type="password" class="login__place form-control" id="password"
+                   style="max-width: 300px; margin-right: auto; margin-left: auto;" placeholder="Ваш пароль">
+
+            <input type="password" class="login__place form-control" id="SecondPassword"
+                   style="max-width: 300px; margin-right: auto; margin-left: auto;" placeholder="Ваш пароль х2">
+            <div class="login__button" style="max-width: 300px; margin-left: auto; margin-right: auto;">
+                <button type="button" id="loginBut" class="btn btn-secondary reg_btn"
+                        style="max-width: 300px; margin-left: auto; margin-right: auto;" disabled
+                        ng-click="sendRegButton.click()"> Зарегистрироваться
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

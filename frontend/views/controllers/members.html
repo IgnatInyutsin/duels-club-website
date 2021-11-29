@@ -1,74 +1,74 @@
 <meta http-equiv="Cache-Control" content="no-cache">
 <div class="content__block" id="search__member__block">
-	<div class="content__block__title">Функция недоступна</div>
+    <div class="content__block__title">Функция недоступна</div>
 </div>
 
 <div id="member_container">
-	<div class="content__block">
-		<div class="content__block__title">Профиль участника {{dataOfMember[7]}}</div>
-	</div>
-	<div class="content__block">
-		<div class="content__block__title">
-			Общая информация
-		</div>
+    <div class="content__block">
+        <div class="content__block__title">Профиль участника {{dataOfMember[7]}}</div>
+    </div>
+    <div class="content__block">
+        <div class="content__block__title">
+            Общая информация
+        </div>
 
-		<table class="table-3">
-			<thead>
-				<tr>
-					<th>ТОП</th>
-					<th>ELO</th>
-					<th>ПОБЕД</th>
-					<th>ПОРАЖЕНИЙ</th>
-					<th>НИЧЬИХ</th>
-					<th>ИГР ВСЕГО</th>
-					<th>МАКС ELO</th>
-					<th>ПРОЦЕНТ ПОБЕД</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td data-label="ТОП">{{dataOfMember[0]}}</td>
-					<td data-label="ELO">{{dataOfMember[1]}}</td>
-					<td data-label="ПОБЕД">{{dataOfMember[2]}}</td>
-					<td data-label="ПОРАЖЕНИЙ">{{dataOfMember[3]}}</td>
-					<td data-label="НИЧЬИХ">{{dataOfMember[4]}}</td>
-					<td data-label="ИГР ВСЕГО">{{dataOfMember[2] + dataOfMember[3] + dataOfMember[4]}}</td>
-					<td data-label="МАКС ELO">{{dataOfMember[6]}}</td>
-					<td data-label="ПРОЦЕНТ ПОБЕД">{{dataOfMember[8]}}%</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+        <table class="table-3">
+            <thead>
+            <tr>
+                <th>ТОП</th>
+                <th>ELO</th>
+                <th>ПОБЕД</th>
+                <th>ПОРАЖЕНИЙ</th>
+                <th>НИЧЬИХ</th>
+                <th>ИГР ВСЕГО</th>
+                <th>МАКС ELO</th>
+                <th>ПРОЦЕНТ ПОБЕД</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-label="ТОП">{{dataOfMember[0]}}</td>
+                <td data-label="ELO">{{dataOfMember[1]}}</td>
+                <td data-label="ПОБЕД">{{dataOfMember[2]}}</td>
+                <td data-label="ПОРАЖЕНИЙ">{{dataOfMember[3]}}</td>
+                <td data-label="НИЧЬИХ">{{dataOfMember[4]}}</td>
+                <td data-label="ИГР ВСЕГО">{{dataOfMember[2] + dataOfMember[3] + dataOfMember[4]}}</td>
+                <td data-label="МАКС ELO">{{dataOfMember[6]}}</td>
+                <td data-label="ПРОЦЕНТ ПОБЕД">{{dataOfMember[8]}}%</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-	<div class="content__block">
-		<div class="content__block__title">
-			Матчи
-		</div>
-		<table class="table-3">
-			<thead>
-				<tr>
-					<th>ОППОНЕНТ</th>
-					<th>РЕЗУЛЬТАТ</th>
-					<th>ELO ДО</th>
-					<th>ELO ПОСЛЕ</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="data in dataOfMemberMatchs">
-					<td data-label="ОППОНЕНТ"><a ng-href="#!/members/{{data[2]}}">{{data[1]}}</a></td>
-					<td data-label="РЕЗУЛЬТАТ"><a ng-href="#!/matches/{{data[5]}}">{{data[0]}}</a></td>
-					<td data-label="ELO ДО">{{data[3]-data[4]}}</td>
-					<td data-label="ELO ПОСЛЕ">{{data[3]}}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+    <div class="content__block">
+        <div class="content__block__title">
+            Матчи
+        </div>
+        <table class="table-3">
+            <thead>
+            <tr>
+                <th>ОППОНЕНТ</th>
+                <th>РЕЗУЛЬТАТ</th>
+                <th>ELO ДО</th>
+                <th>ELO ПОСЛЕ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in dataOfMemberMatchs">
+                <td data-label="ОППОНЕНТ"><a ng-href="#!/members/{{data[2]}}">{{data[1]}}</a></td>
+                <td data-label="РЕЗУЛЬТАТ"><a ng-href="#!/matches/{{data[5]}}">{{data[0]}}</a></td>
+                <td data-label="ELO ДО">{{data[3] - data[4]}}</td>
+                <td data-label="ELO ПОСЛЕ">{{data[3]}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-	<div class="content__block">
-		<div class="content__block__title">
-			График изменения рейтинга
-		</div>
+    <div class="content__block">
+        <div class="content__block__title">
+            График изменения рейтинга
+        </div>
 
-		<canvas id="ratingChangeChart" width="100%"></canvas>
-	</div>
+        <canvas id="ratingChangeChart" width="100%"></canvas>
+    </div>
 </div>

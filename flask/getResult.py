@@ -38,10 +38,10 @@ def main(myID, opponentNick, gameResult, gameComment):
 		K = 30 #коэффициент на увеличение/уменьшение рейтинга
 
 		Ea = 1/( 1+10**( (oldOpponentData[1] - oldMyData[1])/400 ) ) #ожидаемый рейтинг игрока 1
-		newMyData[1] = int( oldMyData[1] + K * (1 - Ea) ) #новый рейтинг игрока 1
+		newMyData[1] = round( oldMyData[1] + K * (1 - Ea) ) #новый рейтинг игрока 1
 
 		Eb = 1/( 1+10**( (oldMyData[1] - oldOpponentData[1])/400 ) ) #ожидаемый рейтинг игрока 2
-		newOpponentData[1] =  int( oldOpponentData[1] + K * (0 - Eb) ) #новый рейтинг игрока 2
+		newOpponentData[1] =  round( oldOpponentData[1] + K * (0 - Eb) ) #новый рейтинг игрока 2
 
 		#Обновляем максимальный рейтинг
 		if oldMyData[2] < newMyData[1]:
@@ -56,10 +56,10 @@ def main(myID, opponentNick, gameResult, gameComment):
 		K = 30 #коэффициент на увеличение/уменьшение рейтинга
 
 		Ea = 1/( 1+10**( (oldOpponentData[1] - oldMyData[1])/400 ) ) #ожидаемый рейтинг игрока 1
-		newMyData[1] = int( oldMyData[1] + K * (0 - Ea) ) #новый рейтинг игрока 1
+		newMyData[1] = round( oldMyData[1] + K * (0 - Ea) ) #новый рейтинг игрока 1
 
 		Eb = 1/( 1+10**( (oldMyData[1] - oldOpponentData[1])/400 ) ) #ожидаемый рейтинг игрока 2
-		newOpponentData[1] = int( oldOpponentData[1] + K * (1 - Eb) ) #новый рейтинг игрока 2
+		newOpponentData[1] = round( oldOpponentData[1] + K * (1 - Eb) ) #новый рейтинг игрока 2
 
 		#Обновляем максимальный рейтинг
 		if oldOpponentData[2] < newOpponentData[1]:
@@ -74,10 +74,10 @@ def main(myID, opponentNick, gameResult, gameComment):
 		K = 30 #коэффициент на увеличение/уменьшение рейтинга
 
 		Ea = 1/( 1+10**( (oldOpponentData[1] - oldMyData[1])/400 ) ) #ожидаемый рейтинг игрока 1
-		newMyData[1] = int( oldMyData[1] + K * (0.5 - Ea) ) #новый рейтинг игрока 1
+		newMyData[1] = round( oldMyData[1] + K * (0.5 - Ea) ) #новый рейтинг игрока 1
 
 		Eb = 1/( 1+10**( (oldMyData[1] - oldOpponentData[1])/400 ) ) #ожидаемый рейтинг игрока 2
-		newOpponentData[1] = int( oldOpponentData[1] + K * (0.5 - Eb) ) #новый рейтинг игрока 2
+		newOpponentData[1] = round( oldOpponentData[1] + K * (0.5 - Eb) ) #новый рейтинг игрока 2
 
 		#Обновляем максимальный рейтинг
 		if oldOpponentData[2] < newOpponentData[1]:

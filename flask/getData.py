@@ -317,3 +317,18 @@ def main(data):
 				record[i][2] = "Ничья"
 
 		return record
+	
+	elif data[:11] == "checkInvite":
+		cursor = db.cursor()
+
+		#проверяем на наличие такого приглашения
+		cursor.execute('''
+		SELECT * FROM invite
+		WHERE invite_id = '{}';
+		'''.format(data[11:]))
+		
+		#проверка на наличие элементов в ответе
+		if len(cursor.fetchall()) > 0:
+			return {"result": 1}
+		else:
+			return {"result": 0}

@@ -25,3 +25,7 @@ second_player_elo SMALLINT NOT NULL,
 first_elo_change SMALLINT,
 second_elo_change SMALLINT,
 commentary TEXT);
+
+CREATE TABLE IF NOT EXISTS invite 
+(id SERIAL NOT NULL PRIMARY KEY,
+invite_id VARCHAR(129) NOT NULL);
